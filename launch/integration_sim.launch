@@ -11,6 +11,8 @@
 	<!-- Target tracking -->
 	<include file="$(find elikos_tracking)/launch/tracking.launch"/>
 
+	<!-- AI -->
+
 	<!-- Path planning and navigation -->
   <include file="$(find elikos_nav)/launch/nav.launch"/>
 
