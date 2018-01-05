@@ -4,6 +4,18 @@
 
 ## Simulation avec rviz (2017-2018)
 
+Cloner `elikos_roomba` et `create_autonomy` dans le dossier `src/` du même workspace  
+````
+git clone https://github.com/elikos/elikos_roomba.git
+git clone https://github.com/AutonomyLab/create_autonomy.git
+````
+
+S'assurer de init et update les submodules (on a besoin des modèles!)  
+````
+git submodule init
+git submodule update --recursive --remote
+````
+
 Utiliser le launch file `roomba_sim.launch`  
 ````
 roslaunch elikos_sim roomba_sim.launch
@@ -33,7 +45,7 @@ rosrun tf static_transform_publisher 0 0 0 0 0 0 1 elikos_arena_origin elikos_se
 2. Mettre à jour les sous-modules git (le Firmware du pixhawk et les modèles gazebo)
 
         git submodule init
-        git submodule update
+        git submodule update --recursive --remote
 
 3. Initialiser les variables d'environnement pour gazebo
 
