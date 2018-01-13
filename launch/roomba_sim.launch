@@ -19,6 +19,7 @@
             <param name="tf_pose" value="/elikos_fcu" />
             <param name="tf_setpoint" value="/elikos_setpoint" />
             <param name="tf_origin" value="/elikos_arena_origin" />
+            <param name="arena_dimension" value="$(arg arena_dimension)" />
         </node>
 
         <!-- Services for robots -->
