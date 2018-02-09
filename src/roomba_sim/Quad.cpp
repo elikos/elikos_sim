@@ -29,6 +29,12 @@ Quad::Quad(ros::NodeHandle& n, ros::Duration expectedCycleTime)
     n_p.getParam("tf_origin", tfOrigin_);
     n_p.getParam("tf_pose", tfPose_);
     n_p.getParam("tf_setpoint", tfSetpoint_);
+    // msgs
+    std::string decisionmaking_cmd_topic;
+    n_p.getParam("decisionmaking_cmd_topic", decisionmaking_cmd_topic);
+
+    // setup subscriber
+    decisionmaking_cmd_sub_ = n_.subscribe(decisionmaking_cmd_topic, 100, &Quad::updateSetpoint, this);
 
     // setup PIDs
     pid_vel_x_ = new BoundedPID(-vel_xy_max, vel_xy_max, vel_xy_p, vel_xy_i, vel_xy_d, 0.0, -0.0, false);
@@ -124,22 +130,13 @@ void Quad::updateVel() {
     //vel_yaw_
 }
 
-void Quad::updateSetpoint() {
-    try {
-        tf_listener_.lookupTransform(tfOrigin_, tfSetpoint_, ros::Time(0), currentSetpoint_);
-
-        setpoint_x_ = currentSetpoint_.getOrigin().x();
-        setpoint_y_ = currentSetpoint_.getOrigin().y();
-        setpoint_z_ = currentSetpoint_.getOrigin().z();
-        //setpoint_yaw_ = tf::getYaw(currentSetpoint_.getRotation());
-    } catch (tf::TransformException e) {
-        // don't display error since it should just wait until static_transform_publisher
-        ROS_WARN("QUAD tf setpoint: %s", e.what());
-    }
+void Quad::updateSetpoint(const elikos_msgs::AICmd::ConstPtr& msg) {
+    setpoint_x_ = msg->pose.pose.position.x;
+    setpoint_y_ = msg->pose.pose.position.y;
+    setpoint_z_ = msg->pose.pose.position.z;
 }
 
 void Quad::update() {
-    updateSetpoint();
     updateVel();
     updatePose();
     publishSetpointMarker();
