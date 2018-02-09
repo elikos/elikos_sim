@@ -14,6 +14,7 @@
 #include <tf/transform_broadcaster.h>
 #include <visualization_msgs/Marker.h>
 #include "BoundedPID.h"
+#include "elikos_msgs/AICmd.h"
 
 // names
 static const std::string SETPOINT_MARKER_TOPIC_NAME = "markers/elikos_setpoint";
@@ -77,6 +78,8 @@ class Quad
         ros::Publisher quad_marker_pub_; /**< quad marker publisher */
         ros::Publisher setpoint_marker_pub_; /**< setpoint marker publisher */
 
+        ros::Subscriber decisionmaking_cmd_sub_; /**< decisionmaking command subscriber */
+
         tf::StampedTransform currentSetpoint_; /**< current setpoint tf */
         double setpoint_x_; /**< current X setpoint */
         double setpoint_y_; /**< current Y setpoint */
@@ -98,9 +101,9 @@ class Quad
         BoundedPID* pid_vel_z_; /**< Z PID */
 
         /**
-         * \brief Update setpoint by looking up latest setpoint tf.
+         * \brief Callback to get the setpoint.
          */
-        void updateSetpoint();
+        void updateSetpoint(const elikos_msgs::AICmd::ConstPtr&);
 
         /**
          * \brief Update velocities by calling PIDs.

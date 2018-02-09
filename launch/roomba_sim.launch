@@ -20,6 +20,7 @@
             <param name="tf_setpoint" value="/elikos_setpoint" />
             <param name="tf_origin" value="/elikos_arena_origin" />
             <param name="arena_dimension" value="$(arg arena_dimension)" />
+            <param name="decisionmaking_cmd_topic" value="/elikos_decisionmaking_cmd" />
         </node>
 
         <!-- Services for robots -->
@@ -30,7 +31,7 @@
 
         <!-- Target robot detection simulation -->
         <node name="sim_detection" pkg="elikos_sim" type="sim_detection" output="screen">
-            <param name="target_robots_topic" value="/elikos_target_robot_array" />
+            <param name="target_robots_topic" value="/elikos_track_robot_array" />
             <param name="target_robots_markers_topic" value="markers/target_robots" />
             <param name="tf_pose" value="/elikos_fcu" />
             <param name="tf_origin" value="/elikos_arena_origin" />

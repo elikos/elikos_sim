@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find elikos_sim)/launch/roomba_sim.launch" />
+    <include file="$(find elikos_decisionmaking)/launch/decisionmaking.launch">
+        <arg name="config" value="$(find elikos_sim)/cfg/decisionmaking.yaml"/>
+    </include>
+</launch>
