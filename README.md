@@ -31,9 +31,9 @@ Pour reset les robots
 rosservice call /sim/reset
 ````
 
-Pour envoyer un setpoint au quad  
+Pour envoyer un setpoint au quad, publier un message `DMCmd` avec la pose voulue sur `/elikos_decisionmaking_cmd`  
 ````
-rosrun tf static_transform_publisher 0 0 0 0 0 0 1 elikos_arena_origin elikos_setpoint 100
+rostopic pub /elikos_decisionmaking_cmd <tab> <tab>
 ````
 
 
