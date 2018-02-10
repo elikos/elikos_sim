@@ -57,7 +57,7 @@ Visualization Manager:
           Value: true
         elikos_fcu:
           Value: false
-        elikos_setpoint:
+        elikos_setpoint_sim:
           Value: false
         groundrobot1:
           Value: false
@@ -88,7 +88,7 @@ Visualization Manager:
         obstaclerobot4:
           Value: false
         world:
-          Value: true
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -99,7 +99,7 @@ Visualization Manager:
           elikos_arena_origin:
             elikos_fcu:
               {}
-            elikos_setpoint:
+            elikos_setpoint_sim:
               {}
             groundrobot1:
               {}
@@ -286,6 +286,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
+    Default Light: true
     Fixed Frame: elikos_arena_origin
     Frame Rate: 30
   Name: root

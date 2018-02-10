@@ -17,7 +17,7 @@
         <!-- Simulation -->
         <node name="sim_roombas" pkg="elikos_sim" type="sim_roombas" output="screen">
             <param name="tf_pose" value="/elikos_fcu" />
-            <param name="tf_setpoint" value="/elikos_setpoint" />
+            <param name="tf_setpoint" value="/elikos_setpoint_sim" />
             <param name="tf_origin" value="/elikos_arena_origin" />
             <param name="arena_dimension" value="$(arg arena_dimension)" />
             <param name="decisionmaking_cmd_topic" value="/elikos_decisionmaking_cmd" />

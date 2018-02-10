@@ -138,6 +138,16 @@ class Quad
          * \return marker message.
          */
         visualization_msgs::Marker createMarkerMsg(std::string frame, std::string meshResource, double r, double g, double b, double a);
+
+        /**
+         * \brief Helper method for creating tf.
+         *
+         * \param pos : position.
+         * \param yaw : rotation.
+         * 
+         * \return transform.
+         */
+        tf::Transform createTfFromPosYaw(tf::Vector3 pos, double yaw);
 };
 
 #endif // ELIKOS_SIM_QUAD_H

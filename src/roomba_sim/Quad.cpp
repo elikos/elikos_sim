@@ -86,6 +86,15 @@ visualization_msgs::Marker Quad::createMarkerMsg(std::string frame, std::string 
     return msg;
 }
 
+tf::Transform Quad::createTfFromPosYaw(tf::Vector3 pos, double yaw) {
+    tf::Transform tf;
+    tf::Quaternion q;
+    tf.setOrigin(tf::Vector3(pos.x(), pos.y(), pos.z()));
+    q.setRPY(0, 0, yaw);
+    tf.setRotation(q);
+    return tf;
+}
+
 double Quad::getInteractionDiameter() const {
     return INTERACTION_DIAMETER;
 }
@@ -100,11 +109,7 @@ tf::Vector3 Quad::getPosition() const {
 
 void Quad::publishQuad() {
     // publish elikos_fcu
-    tf::Transform tf;
-    tf::Quaternion q;
-    tf.setOrigin(tf::Vector3(pos_x_, pos_y_, pos_z_));
-    q.setRPY(0, 0, yaw_);
-    tf.setRotation(q);
+    tf::Transform tf = createTfFromPosYaw(tf::Vector3(pos_x_, pos_y_, pos_z_), yaw_);
     tf_br_.sendTransform(tf::StampedTransform(tf, ros::Time::now(), tfOrigin_, tfPose_));
 
     // publish elikos_fcu_marker
@@ -112,6 +117,10 @@ void Quad::publishQuad() {
 }
 
 void Quad::publishSetpointMarker() {
+    // publish setpoint tf
+    tf::Transform tf = createTfFromPosYaw(tf::Vector3(setpoint_x_, setpoint_y_, setpoint_z_), yaw_);
+    tf_br_.sendTransform(tf::StampedTransform(tf, ros::Time::now(), tfOrigin_, tfSetpoint_));
+    
     // publish elikos_setpoint_marker
     setpoint_marker_pub_.publish(createMarkerMsg(tfSetpoint_, QUAD_MARKER_MODEL_NAME, 0.0, 0.8, 0.0, 0.25));
 }
