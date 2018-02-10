@@ -130,7 +130,7 @@ void Quad::updateVel() {
     //vel_yaw_
 }
 
-void Quad::updateSetpoint(const elikos_msgs::AICmd::ConstPtr& msg) {
+void Quad::updateSetpoint(const elikos_msgs::DMCmd::ConstPtr& msg) {
     setpoint_x_ = msg->pose.pose.position.x;
     setpoint_y_ = msg->pose.pose.position.y;
     setpoint_z_ = msg->pose.pose.position.z;

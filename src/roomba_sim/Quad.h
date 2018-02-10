@@ -14,7 +14,7 @@
 #include <tf/transform_broadcaster.h>
 #include <visualization_msgs/Marker.h>
 #include "BoundedPID.h"
-#include "elikos_msgs/AICmd.h"
+#include "elikos_msgs/DMCmd.h"
 
 // names
 static const std::string SETPOINT_MARKER_TOPIC_NAME = "markers/elikos_setpoint";
@@ -103,7 +103,7 @@ class Quad
         /**
          * \brief Callback to get the setpoint.
          */
-        void updateSetpoint(const elikos_msgs::AICmd::ConstPtr&);
+        void updateSetpoint(const elikos_msgs::DMCmd::ConstPtr&);
 
         /**
          * \brief Update velocities by calling PIDs.
