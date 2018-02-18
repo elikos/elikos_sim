@@ -1,0 +1,19 @@
+# decisionmaking numerical parameters
+dimension_c: 20
+research_altitude: 2
+takeoff_altitude: 1
+edge_tolerance: 0.1
+max_altitude: 2.5
+min_step: 0.3
+max_step: 2
+has_reached_destination_threshold: 0.75
+interaction_altitude: 0.25
+simulation: true
+debug: true
+# Topics and names for decisionmaking2018
+target_array_topic: /elikos_track_robot_array
+cmd_topic: /elikos_decisionmaking_cmd
+origin_tf_name: /elikos_arena_origin
+quad_tf_name: /elikos_fcu
+dm_state_debug_topic: /elikos_decisionmaking_state_debug
+strategy_choice: somerandomstrategy
