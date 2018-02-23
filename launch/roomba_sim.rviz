@@ -299,6 +299,14 @@ Visualization Manager:
       Topic: /elikos_decisionmaking_target_poses_debug
       Unreliable: false
       Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /elikos_decisionmaking_target_markerarray_debug
+      Name: MarkerArray
+      Namespaces:
+        "": true
+      Queue Size: 100
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
